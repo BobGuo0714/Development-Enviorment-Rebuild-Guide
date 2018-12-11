@@ -11,7 +11,7 @@ If your Linux distro is different from Ubuntu 18.04 LTS you should check if your
 My default Linux distro for development and research is Ubuntu 18.04 LTS. I would use GNOME desktop enviorment because I'm most familar with that.  
 Go with smallest install and install all applications you'll need next.  
 
-##2nd Needed applications installation
+##2nd Needed applications installation  
 Due to that I need to code under both C and python, usually I would just apt-get and install these apps.
 My favourite editor is Microsoft's Visual Studio Code and I basiclly use it all over my platform(Windows\macOS\Linux)and all I need to do is just download it from its website and install it.
 Basiclly all applications I need to install from APT-GET are as follwoes.  
