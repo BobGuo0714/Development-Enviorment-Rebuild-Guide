@@ -1,54 +1,35 @@
 # Development-Enviorment-Rebuild-Guide
-In order to help me sove problems when I need to install Ubuntu(Or other Linux distro again), I'm writing this file down to help me 
+This note describes how many packages I need to install and how-to for me
 
-##1st System install  
-My computer enviorment allows me to use 128 gig of my NVMe SM961 SSD and a 2Tb Seagate HDD to install Linux so I would spare them to this:  
-All my SSD space would be mounted at root menu and every 1Tb of my HDD would be mounted on /home and on /usr.   
-I know it is not the best or great way to spread my driver space but meh  
+## Table of Contents
 
-Usually I would go with Debian-based Linux distro so all software install codes are more or less useful on Debian based Linux.  
-If your Linux distro is different from Ubuntu 18.04 LTS you should check if your distro have different name on certain applications.  
-My default Linux distro for development and research is Ubuntu 18.04 LTS. I would use GNOME desktop enviorment because I'm most familar with that.  
-Go with smallest install and install all applications you'll need next.  
+- [Introduction of my devices](#introduction)   
+- [Toolchains](#toolchain)
+- [Installation](#installation)
 
-##2nd Needed applications installation  
-Due to that I need to code under both C and python, usually I would just apt-get and install these apps.
-My favourite editor is Microsoft's Visual Studio Code and I basiclly use it all over my platform(Windows\macOS\Linux)and all I need to do is just download it from its website and install it.
-Basiclly all applications I need to install from APT-GET are as follwoes.  
-  
-sudo apt-get update && sudo apt-get upgrade  
-sudo apt-get install gcc clang clemetine vlc cmatrix build-essestial   
+## Introduction
 
-For NVIDIA Driver\CUDA\Shadowsocks I need to use add-apt.
+My device for Linux is Elitebook 2570p from HP, which to be fair *is* a soild solution for 12" mobile computing, and Sandy Bridge i7-3630QM processor with its quad-core, hyper thread performance is overkill enough for me, but the creppy 12.5" 1366x768 TN panel is really a dealbreaker for me, and HP's bios is kinda wired that can't change the default EFI selection that causes me to go F9 and choose GRUB in order to boot in my Arch Linux.  
+But, consider the whole setup(2570p,16G DDR3L RAM,480G Intel S3500)costs me less that 0.2 grad, I still consider this as a great deal.  
 
-sudo add-apt-repository ppa:graphics-drivers/ppa  
-sudo add-apt-repository ppa:hzwhuang/ss-qt5  
-But since I'm using Bionic Beaver,I need to modify something in Software and Update.  
-Saying "modify" but all I did is just changing Bionic to xenial and saved.  
+## Toolchains
+
+I'm a "programmer" in C and python, and I uses [Visual Studio Code](https://github.com/microsoft/vscode) as my main editor(vim and nano is *OK * per se but I'm more comfortable using GUI based editor, blame M$ for that.), and thankfully there are all these packages I need on Arch's official package libraries.  
+But as a real "Pro" content creator, most apps that I rely on are missing. It's not Arch's fault, but the whole Linux community to blame. I understand that there are really few people trying to edit a video on Linux, most of them choose Windows and macOS, and I also knew that there are toolkits like Blender/Kdenlive and distros build for content creation needs like Ubuntu Studio, but *they just don't work well* on my device. And by device I mean a powerful PC with GeForce GTX 1060 6G and Intel Core i7 8700 and NVMe storage. When I'm under Windows or Hackintosh enviorment I can easily edit 4K video from my Nexus 6P with no lagging but it just can't happened under most linux distros I've tried. And as far as I can tell, Linux is simply not good enough for multimedia content creation in 2019.  
+So what's next? I can live without QQ and Aliwangwang, and Telegram, which is my main choice as IM tool is open-source and can be easily installed simply by 
+
+> sudo pacman -S telegram-desktop
+
+so communication side, not a big deal.  
+And for emailing/web browsering, I always uses Google Chrome and Mozilla Firefox as my main dish. But, using 
 
 
-sudo apt-get update
-sudo ubuntu-drivers autoinstall && sudo apt-get install shadowsocks-qt5  
-and after reboot  
-sudo apt install nvidia-cuda-toolkit gcc-6  
-and voila.  
+## Installation
 
-For Google Chrome you could go with either just download deb pack directly or apt-get.  
-I would write down how to go with apt-get (from StackOverflow)  
 
-google-chrome-stable is available on a 3rd Party Repository: Google Chrome (for Stable).
 
-Follow the instruction for installation:
 
-Add Key:
 
-wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
-Set repository:
+The README file is based on [Standard Readme](https://github.com/RichardLitt/standard-readme) made by Richard Litt.  
 
-echo 'deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main' | sudo tee /etc/apt/sources.list.d/google-chrome.list
-Install package:
-
-sudo apt-get update  
-sudo apt-get install google-chrome-stable  
-
-and that's it.
+<a href="https://996.icu"><img src="https://img.shields.io/badge/link-996.icu-red.svg" alt="996.icu" /></a>  
