@@ -9,8 +9,7 @@ This note describes how many packages I need to install and how-to for me
 
 ## Introduction
 
-My device for Linux is Elitebook 2570p from HP, which to be fair *is* a soild solution for 12" mobile computing, and Sandy Bridge i7-3630QM processor with its quad-core, hyper thread performance is overkill enough for me, but the creppy 12.5" 1366x768 TN panel is really a dealbreaker for me, and HP's bios is kinda wired that can't change the default EFI selection that causes me to go F9 and choose GRUB in order to boot in my Arch Linux.  
-But, consider the whole setup(2570p,16G DDR3L RAM,480G Intel S3500)costs me less that 0.2 grad, I still consider this as a great deal.  
+My device for Linux is Lenovo's ThinkPad T430 with Quad Core Intel Core i7 3630QM processor. I know I know, this is defintly *not* the Best bang for the buck processor, but it can get the job down so not a big deal. Equipped with 16Gib of DDR3 1600 Dual channel memory and 600Gib Intel S3500 Soild State Drive, it can get every job down ASAP.
 
 ## Toolchains
 
@@ -26,9 +25,7 @@ And for emailing/web browsering, I always uses Google Chrome and Mozilla Firefox
 
 ## Installation
 
-
-
-
+Installing Arch linux is pretty easy for me. I can install it with a phone nearby browsing Arch Linux Wiki and it's clearly a
 
 The README file is based on [Standard Readme](https://github.com/RichardLitt/standard-readme) made by Richard Litt.  
 
