@@ -33,7 +33,7 @@ echo "::1 localhost" >> /etc/hosts
 echo "127.0.1.1 $2.localdomain $2" >> /etc/hosts
 
 ## Install software packages
-if $1 = "kde"
+if [$1 == "kde"]
 then 
     echo "Install KDE Plasma"
     pacman -Syu xorg plasma kde-applications-meta  --noconfirm
@@ -44,7 +44,7 @@ then
     systemctl enable sddm 
     systemctl enable NetworkManager
     echo "Success. Next will be bootloader"
-elif
+elif [$1 == "server"]
     echo "Install Server"
     pacman -Syu openssh git nano neofetch wget curl --noconfirm
     systemctl enable sshd
