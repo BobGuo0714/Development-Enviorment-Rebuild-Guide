@@ -23,7 +23,7 @@ arch-chroot /mnt
 echo "设定时区为上海"
 ln -s /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
 hwclock --systohc --utc
-echo "设置locale.conf"0
+echo "设置locale.conf"
 echo "en_US.UTF-8 UTF-8" > /etc/locale.gen
 echo "en_US ISO-8859-1" >> /etc/locale.gen
 echo "ja_JP.EUC-JP EUC-JP" >> /etc/locale.gen
@@ -48,7 +48,7 @@ echo "::1 localhost" >> /etc/hosts
 echo "127.0.1.1 $2.localdomain $2" >> /etc/hosts
 
 ## Install software packages
-if $1 = "server "
+if $1 = "kde"
 then 
     echo "安装KDE Plasma基础组成部分"
     pacman -Syu xorg plasma kde-applications-meta  --noconfirm
