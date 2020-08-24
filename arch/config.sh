@@ -3,25 +3,6 @@ echo "PegionFish's Arch Linux Installation Script"
 echo "Wirtten by PegionFish, for use in mainland China only(You're gonna be pissed off if you're not there)"
 echo "Please uset this script after you successfully configurated internet and drive, other things will be done automaticlly"
 sleep 3
-## rewrite mirrorlist with Chinese mirrorsp
-echo "Using Mirror in Mainland CHina"
-cp /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.bak
-rm /etc/pacman.d/mirrorlist
-cp mirrorlist_china /etc/pacman.d/mirrorlist
-pacman -Sy
-
-## pacstrap and install packages
-echo "Installing necessery Software Packages"
-pacstrap /mnt base base-devel linux linux-firmware  nano
-cp /etc/pacman.d/mirrorlist /mnt/etc/pacman.d/mirrorlist
-chmod +r /etc/pacman.d/mirrorlist
-
-## after installation configuration
-echo "Generate Partition Table"
-genfstab -U /mnt >> /mnt/etc/fstab
-
-echo "chroot to installed Arch Linux environment"
-arch-chroot /mnt
 
 echo "Set timezone in Shanghai"
 ln -s /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
@@ -71,7 +52,7 @@ elif
     pacman -S dhcpcd iwd netctl wpa_supplicant dialog ppp
     systemctl enable netctl
     echo"Success. Next will be bootloader"
-fi;
+fi
 
 ## Install bootloader
 echo "Installing GRUB package"
@@ -80,4 +61,9 @@ echo "Install GRUB"
 grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=grub --recheck
 echo "Configure GRUB"
 grub-mkconfig -o /boot/grub/grub.cfg
-echo "Installation is complete. Set up password & reboot to your Arch Linux Build."
+
+## Setup Password
+echo "Please set up your ROOT password. This password should NOT be shown to anyone"
+passwd
+clear
+exit
