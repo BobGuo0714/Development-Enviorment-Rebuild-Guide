@@ -71,6 +71,7 @@ elif
     pacman -S dhcpcd iwd netctl wpa_supplicant dialog ppp
     systemctl enable netctl
     echo"Success. Next will be bootloader"
+fi
 
 ## Install bootloader
 echo "Installing GRUB package"
