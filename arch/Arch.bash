@@ -2,28 +2,32 @@
 echo "PegionFish's Arch Linux Installation Script"
 echo "Wirtten by PegionFish, for use in mainland China only(You're gonna be pissed off if you're not there)"
 echo "Please uset this script after you successfully configurated internet and drive, other things will be done automaticlly"
+sleep 3
 ## rewrite mirrorlist with Chinese mirrorsp
-echo "使用中国国内镜像"
+echo "Using Mirror in Mainland CHina"
 cp /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.bak
 rm /etc/pacman.d/mirrorlist
 cp mirrorlist_china /etc/pacman.d/mirrorlist
-pacman -Syyuu
+pacman -Sy
 
 ## pacstrap and install packages
-echo "安装软件包"
+echo "Installing necessery Software Packages"
 pacstrap /mnt base base-devel linux linux-firmware  nano
 cp /etc/pacman.d/mirrorlist /mnt/etc/pacman.d/mirrorlist
 chmod +r /etc/pacman.d/mirrorlist
 
 ## after installation configuration
-echo "建立分区表"
+echo "Generate Partition Table"
 genfstab -U /mnt >> /mnt/etc/fstab
-echo "进入业已安装的Arch Linux环境"
+
+echo "chroot to installed Arch Linux environment"
 arch-chroot /mnt
-echo "设定时区为上海"
+
+echo "Set timezone in Shanghai"
 ln -s /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
 hwclock --systohc --utc
-echo "设置locale.conf"
+
+echo "Configure locale.conf"
 echo "en_US.UTF-8 UTF-8" > /etc/locale.gen
 echo "en_US ISO-8859-1" >> /etc/locale.gen
 echo "ja_JP.EUC-JP EUC-JP" >> /etc/locale.gen
@@ -33,16 +37,16 @@ echo "zh_CN.GBK GBK" >> /etc/locale.gen
 echo "zh_CN.UTF-8 UTF-8" >> /etc/locale.gen
 echo "zh_CN GB2312" >> /etc/locale.gen
 
-echo "生成地域设置"
+echo "Generate locale setting"
 locale-gen
 
-echo "设置语言（后期请在桌面环境中自行设置）"
+echo "Set Language to English"
 echo LANG=en_US.UTF-8 > /etc/locale.conf
 
-echo "设置主机名"
+echo "Set Hostname"
 echo "$2" > /etc/hostname
 
-echo "设置hosts"
+echo "Set Hosts"
 echo "127.0.0.1 localhost" > /etc/hosts
 echo "::1 localhost" >> /etc/hosts
 echo "127.0.1.1 $2.localdomain $2" >> /etc/hosts
@@ -50,29 +54,29 @@ echo "127.0.1.1 $2.localdomain $2" >> /etc/hosts
 ## Install software packages
 if $1 = "kde"
 then 
-    echo "安装KDE Plasma基础组成部分"
+    echo "Install KDE Plasma"
     pacman -Syu xorg plasma kde-applications-meta  --noconfirm
-    echo "安装必要桌面工具"
+    echo "Install Desktop software"
     pacman -S sddm firefox vlc fcitx networkmanager openssh --noconfirm
-    echo "安装字体"
+    echo "Install Font"
     pacman -S noto-fonts noto-fonts-cjk noto-fonts-emoji adobe-source-han-sans-otc-fonts wqy-microhei wqy-zenhei --noconfirm
     systemctl enable sddm 
     systemctl enable NetworkManager
-    echo "成功，下一步安装Bootloader"
+    echo "Success. Next will be bootloader"
 elif
-    echo "安装服务器组件"
+    echo "Install Server"
     pacman -Syu openssh git nano neofetch wget curl --noconfirm
     systemctl enable sshd
-    echo "安装网络组件"
+    echo "Install Network software"
     pacman -S dhcpcd iwd netctl wpa_supplicant dialog ppp
     systemctl enable netctl
-    echo "成功，下一步安装Bootloader"
+    echo"Success. Next will be bootloader"
 
 ## Install bootloader
-echo "安装GRUB软件包"
+echo "Installing GRUB package"
 pacman -S efibootmgr dosfstools grub os-prober
-echo "安装GRUB"
+echo "Install GRUB"
 grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=grub --recheck
-echo "配置GRUB"
+echo "Configure GRUB"
 grub-mkconfig -o /boot/grub/grub.cfg
-echo "安装成功。在设置密码与用户账户后请重启到Arch Linux环境下。"
+echo "Installation is complete. Set up password & reboot to your Arch Linux Build."
