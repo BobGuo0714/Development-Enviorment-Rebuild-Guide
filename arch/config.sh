@@ -45,6 +45,7 @@ then
     systemctl enable NetworkManager
     echo "Success. Next will be bootloader"
 elif [$1 == "server"]
+then
     echo "Install Server"
     pacman -Syu openssh git nano neofetch wget curl --noconfirm
     systemctl enable sshd
@@ -52,6 +53,9 @@ elif [$1 == "server"]
     pacman -S dhcpcd iwd netctl wpa_supplicant dialog ppp
     systemctl enable netctl
     echo"Success. Next will be bootloader"
+else
+    echo "Please make sure what kind of environment you're installing. Installation will continue but you should install these applications manually"
+
 fi
 
 ## Install bootloader
